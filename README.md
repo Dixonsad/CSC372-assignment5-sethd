@@ -1,16 +1,21 @@
-# React + Vite
+# TVmaze Show Gallery React
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+This is an application built with React and Vite so users can search for TV shows using the TVmaze API. It automatically loads a default search on page load, displays up to 10 results in a grid, and fetches the main cast for each show. Clicking a show title uses a client-side routing to load a detailed view.
 
-Currently, two official plugins are available:
+how to run
+1. Clone the repository.
+2. Run npm install to install dependencies.
+3. Run npm run dev to start the local development server.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+React concepts used
 
-## React Compiler
+Components `App.jsx`, `SearchForm.jsx`, `ShowList.jsx`, `ShowCard.jsx`, `ShowDetail.jsx` |
+Lists and keys `ShowList.jsx` (mapping shows), `ShowCard.jsx` (mapping cast members) 
+State `App.jsx`, `SearchForm.jsx`, `ShowCard.jsx`, `ShowDetail.jsx` 
+Effects and fetch `App.jsx` (initial search fetch), `ShowCard.jsx` (cast fetch) 
+Routing `App.jsx` (BrowserRouter, Routes), `ShowDetail.jsx` (`useParams`) 
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+reflection
+Building this in React was honestly a lot easier in some ways than the vanilla JavaScript version, but harder to wrap my head around at first. The hardest part was getting used to passing data around with props instead of just selecting elements, and figuring out the useEffect dependency arrays so it didn't infinitely fetch. 
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+The easiest part was definitely updating the UI. Instead of writing lines and manually appending things like in Assignment 4, React just automatically updates the screen whenever the state changes. I kept the main state in App.jsx because both the search form and the gallery needed to access or change that data. I kept the cast state local to ShowCard.jsx so each card could manage its own fetch request independently.
