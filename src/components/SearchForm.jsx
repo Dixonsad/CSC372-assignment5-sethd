@@ -4,10 +4,10 @@ function SearchForm({ onSearch }) {
   const [query, setQuery] = useState('');
 
   function handleSubmit(e) {
-    e.preventDefault(); // preventDefault stops the page reload[cite: 176]
+    e.preventDefault(); 
     if (query) {
-      onSearch(query); // Call the callback function from props[cite: 193]
-      setQuery(''); // Reset the input
+      onSearch(query); 
+      setQuery(''); 
     }
   }
 
